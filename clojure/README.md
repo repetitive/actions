@@ -13,3 +13,15 @@ After action is executed you will get new issue comment from the `actions` bot w
 ```
 6
 ```
+
+
+### Workflow
+
+To include this action just add following code to your flow:
+
+```
+action "repetitive/actions/clojure" {
+  uses = "repetitive/actions/clojure@master"
+  secrets = ["GITHUB_TOKEN"]
+}
+```
