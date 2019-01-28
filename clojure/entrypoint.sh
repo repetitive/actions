@@ -20,7 +20,7 @@ comment_body=$(jq -r ".comment.body" "$GITHUB_EVENT_PATH")
 
 # Evaluate comment and capture output
 echo "Evaluate comment and capture output:"
-clojure_code = $(sed "s/\/clojure //g" <<< $comment_body)
+clojure_code=$(sed "s/\/clojure //g" <<< $comment_body)
 echo "$clojure_code"
 output=$(clojure --eval "$clojure_code")
 
