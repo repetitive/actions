@@ -35,6 +35,6 @@ COMMENTS_URI=$(jq -r ".issue.comments_url" "$GITHUB_EVENT_PATH")
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 
-new_comment_resp=$(curl --data "{\"body\": \"\`\`\`clojure$clojure_code\`\`\`\\n\`\`\`$output\`\`\`\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${COMMENTS_URI})
+new_comment_resp=$(curl --data "{\"body\": \"\`\`\`clojure\\n$clojure_code\\n\`\`\`\\n\`\`\`\\n$output\\n\`\`\`\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${COMMENTS_URI})
 
 echo "created comment"
