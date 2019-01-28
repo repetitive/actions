@@ -33,7 +33,7 @@ pr_resp=$(curl -X GET -s -H "${AUTH_HEADER}" -H "${API_HEADER}" \
 
 
 # Capture output
-output=$( sh -c "clojure -e $*" )
+output=$(clojure --eval "$*")
 
 # Preserve output for consumption by downstream actions
 echo "$output" > "${HOME}/${GITHUB_ACTION}.${AWS_DEFAULT_OUTPUT}"

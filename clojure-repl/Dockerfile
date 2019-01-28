@@ -1,4 +1,4 @@
-FROM clojure
+FROM clojure:tools-deps-alpine
 
 LABEL name="clojure-repl"
 LABEL version="1.0.0"
@@ -12,8 +12,8 @@ LABEL com.github.actions.icon="git-pull-request"
 LABEL com.github.actions.color="purple"
 COPY LICENSE README.md /
 
-RUN apt-get update
-RUN apt-get install -y curl jq
+RUN apk --no-cache add jq bash curl git
+
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 ENTRYPOINT ["/entrypoint.sh"]
