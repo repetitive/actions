@@ -12,5 +12,8 @@ LABEL com.github.actions.icon="git-pull-request"
 LABEL com.github.actions.color="purple"
 COPY LICENSE README.md /
 
+RUN apt-get update
+RUN apt-get install -y curl jq
+
 COPY "entrypoint.sh" "/entrypoint.sh"
 ENTRYPOINT ["/entrypoint.sh"]
