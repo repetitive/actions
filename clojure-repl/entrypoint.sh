@@ -36,8 +36,7 @@ URI=https://api.github.com
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 
-
-new_comment_resp=$(curl --data "{\"body\": \"```$output```\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" \
+new_comment_resp=$(curl --data "{\"body\": \"```data```\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" \
           "${URI}/repos/$REPO_FULLNAME/issues/$ISSUE_NUMBER/comments")
 
 
