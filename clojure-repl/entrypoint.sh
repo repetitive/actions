@@ -37,8 +37,5 @@ pr_resp=$(curl -X GET -s -H "${AUTH_HEADER}" -H "${API_HEADER}" \
 echo "Evaluate comment and capture output"
 output=$(clojure --eval "(+ 1 2 3)")
 
-# Preserve output for consumption by downstream actions
-echo "$output" > "${HOME}/${GITHUB_ACTION}.${AWS_DEFAULT_OUTPUT}"
-
 # Write output to STDOUT
 echo "$output"
