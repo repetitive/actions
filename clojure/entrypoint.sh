@@ -16,7 +16,7 @@ if [[ -z "$GITHUB_TOKEN" ]]; then
 	exit 1
 fi
 
-comment_body=(jq -r ".issue.body" "$GITHUB_EVENT_PATH")
+comment_body=$(jq -r ".comment.body" "$GITHUB_EVENT_PATH")
 
 # Evaluate comment and capture output
 echo "Evaluate comment and capture output:"
