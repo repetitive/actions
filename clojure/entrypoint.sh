@@ -21,7 +21,9 @@ comment_body=(jq -r ".issue.body" "$GITHUB_EVENT_PATH")
 # Evaluate comment and capture output
 echo "Evaluate comment and capture output:"
 echo $(comment_body)
-output=$(clojure --eval "(+ 1 2 3)")
+clojure_code = $(sed "s/\/clojure //g" <<< $comment_body)
+echo $(clojure_code)
+output=$(clojure --eval "$clojure_code")
 
 # Write output to STDOUT
 echo "$output"
@@ -34,6 +36,6 @@ COMMENTS_URI=$(jq -r ".issue.comments_url" "$GITHUB_EVENT_PATH")
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 
-new_comment_resp=$(curl --data "{\"body\": \"$output\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${COMMENTS_URI})
+new_comment_resp=$(curl --data "{\"body\": \"\`$clojure_code\`\`\`\`$output\`\`\`\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${COMMENTS_URI})
 
-
+echo "created comment"
