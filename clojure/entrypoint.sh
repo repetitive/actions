@@ -2,9 +2,9 @@
 
 set -e
 
-# skip if no /repl
-echo "Checking if contains '/repl' command..."
-(jq -r ".comment.body" "$GITHUB_EVENT_PATH" | grep -E "/repl") || exit 78
+# skip if no /clojure
+echo "Checking if contains '/clojure' command..."
+(jq -r ".comment.body" "$GITHUB_EVENT_PATH" | grep -E "/clojure") || exit 78
 
 if [[ "$(jq -r ".action" "$GITHUB_EVENT_PATH")" != "created" ]]; then
 	echo "This is not a new comment event!"
@@ -20,7 +20,7 @@ comment_body=(jq -r ".issue.body" "$GITHUB_EVENT_PATH")
 
 # Evaluate comment and capture output
 echo "Evaluate comment and capture output:"
-echo comment_body 
+echo $(comment_body)
 output=$(clojure --eval "(+ 1 2 3)")
 
 # Write output to STDOUT
@@ -34,6 +34,6 @@ COMMENTS_URI=$(jq -r ".issue.comments_url" "$GITHUB_EVENT_PATH")
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 
-new_comment_resp=$(curl --data "{\"body\": \"```data```\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${COMMENTS_URI})
+new_comment_resp=$(curl --data "{\"body\": \"$output\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${COMMENTS_URI})
 
 
