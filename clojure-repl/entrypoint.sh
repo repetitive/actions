@@ -32,8 +32,10 @@ pr_resp=$(curl -X GET -s -H "${AUTH_HEADER}" -H "${API_HEADER}" \
           "${URI}/repos/$REPO_FULLNAME/pulls/$PR_NUMBER")
 
 
-# Capture output
-output=$(clojure --eval "$*")
+
+# Evaluate comment and capture output
+echo "Evaluate comment and capture output"
+output=$(clojure --eval "(+ 1 2 3)")
 
 # Preserve output for consumption by downstream actions
 echo "$output" > "${HOME}/${GITHUB_ACTION}.${AWS_DEFAULT_OUTPUT}"
