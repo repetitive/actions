@@ -37,4 +37,5 @@ AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 
 new_comment_resp=$(curl --data "{\"body\": \"\`\`\`clojure\\n$clojure_code\\n\`\`\`\\n\`\`\`\\n$output\\n\`\`\`\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${COMMENTS_URI})
 
+echo "$new_comment_resp"
 echo "created comment"
