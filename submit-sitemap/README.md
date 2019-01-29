@@ -9,6 +9,6 @@ To include this action just add following code to your flow:
 ```
 action "repetitive/actions/submit-sitemap" {
   uses = "repetitive/actions/submit-sitemap@master"
-  agrs = ["https://example.com/sitemap.xml"]
+  agrs = "https://example.com/sitemap.xml"
 }
 ```
