@@ -12,10 +12,6 @@ if [[ "$(jq -r ".created" "$GITHUB_EVENT_PATH")" != true ]]; then
 	exit 78
 fi
 
-echo "$(jq -r "." "$GITHUB_EVENT_PATH")"
-
-
-
 if [[ "$(jq -r ".head_commit" "$GITHUB_EVENT_PATH")" == "null" ]]; then
 	echo "This push has not commits!"
 	exit 78
