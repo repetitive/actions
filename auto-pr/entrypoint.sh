@@ -21,8 +21,6 @@ if [[ "$(jq -r ".head_commit" "$GITHUB_EVENT_PATH")" == "null" ]]; then
 	exit 78
 fi
 
-
-
 commit_message="$(jq -r ".head_commit.message" "$GITHUB_EVENT_PATH")"
 
 echo "Commit message:"
@@ -40,5 +38,5 @@ AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 
 new_pr_resp=$(curl --data "{\"title\":\"[WIP]: $commit_message\", \"head\": \"$DEFAULT_BRANCH\", \"base\": \"$DEFAULT_BRANCH\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${PULLS_URI})
 
-echo "$new_comment_resp"
-echo "created comment"
+echo "$new_pr_resp"
+echo "created pull request"
