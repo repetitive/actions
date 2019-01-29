@@ -29,7 +29,6 @@ echo "$commit_message"
 REPO_FULLNAME=$(jq -r ".repository.full_name" "$GITHUB_EVENT_PATH")
 
 DEFAULT_BRANCH=$(jq -r ".repository.default_branch" "$GITHUB_EVENT_PATH")
-CURRENT_BRANCH=$(jq -r ".ref" "$GITHUB_EVENT_PATH")
 echo "Creating new PR for $REPO_FULLNAME..."
 
 URI=https://api.github.com
@@ -37,7 +36,7 @@ PULLS_URI="${URI}/repos/$REPO_FULLNAME/pulls"
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 
-new_pr_resp=$(curl --data "{\"title\":\"[WIP]: $commit_message\", \"head\": \"$CURRENT_BRANCH\", \"base\": \"$DEFAULT_BRANCH\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${PULLS_URI})
+new_pr_resp=$(curl --data "{\"title\":\"[WIP]: $commit_message\", \"head\": \"$GITHUB_REF\", \"base\": \"$DEFAULT_BRANCH\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${PULLS_URI})
 
 echo "$new_pr_resp"
 echo "created pull request"
