@@ -14,18 +14,16 @@ fi
 
 echo "$(jq -r "." "$GITHUB_EVENT_PATH")"
 
-echo "$(jq -r '.commits | length' "$GITHUB_EVENT_PATH")"
 
 
-
-if [[ "$(jq -r '.commits | length' "$GITHUB_EVENT_PATH")" != 0 ]]; then
+if [[ "$(jq -r ".head_commit" "$GITHUB_EVENT_PATH")" == "null" ]]; then
 	echo "This push has not commits!"
 	exit 78
 fi
 
 
 
-commit_message="$(jq -r ".commits[0].message" "$GITHUB_EVENT_PATH")"
+commit_message="$(jq -r ".head_commit.message" "$GITHUB_EVENT_PATH")"
 
 echo "Commit message:"
 echo "$commit_message"
