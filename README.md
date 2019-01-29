@@ -1,7 +1,7 @@
 ## repetitive actions
 
 Collection of repetitive GitHub Actions.
-That can be used in other repos across the GitHub:
+That can be used in other repos across GitHub:
 
  - build [Hugo website](./hugo/README.md)
  - eval [Clojure code](./clojure/README.md) inside the comment
