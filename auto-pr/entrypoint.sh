@@ -32,7 +32,8 @@ DEFAULT_BRANCH=$(jq -r ".repository.default_branch" "$GITHUB_EVENT_PATH")
 CURRENT_BRANCH=$(jq -r ".ref" "$GITHUB_EVENT_PATH")
 echo "Creating new PR for $REPO_FULLNAME..."
 
-PULLS_URI=$(jq -r ".repository.url" "$GITHUB_EVENT_PATH")"/pulls"
+URI=https://api.github.com
+PULLS_URI="${URI}/repos/$REPO_FULLNAME/pulls"
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 
