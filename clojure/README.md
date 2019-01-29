@@ -25,3 +25,7 @@ action "repetitive/actions/clojure" {
   secrets = ["GITHUB_TOKEN"]
 }
 ```
+
+### Demo
+
+![demo](demo.gif)
