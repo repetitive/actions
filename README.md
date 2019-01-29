@@ -1,5 +1,7 @@
 ## repetitive actions
 
+[![GitHubActions](https://img.shields.io/badge/listed%20on-GitHubActions-blue.svg)](https://github-actions.netlify.com/materials/repetitive)
+
 Collection of repetitive GitHub Actions.
 That can be used in other repos across GitHub:
 
