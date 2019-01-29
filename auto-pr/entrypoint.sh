@@ -37,7 +37,7 @@ PULLS_URI="${URI}/repos/$REPO_FULLNAME/pulls"
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 
-new_pr_resp=$(curl --data "{\"title\":\"[WIP]: $commit_message\", \"head\": \"$DEFAULT_BRANCH\", \"base\": \"$DEFAULT_BRANCH\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${PULLS_URI})
+new_pr_resp=$(curl --data "{\"title\":\"[WIP]: $commit_message\", \"head\": \"$CURRENT_BRANCH\", \"base\": \"$DEFAULT_BRANCH\"}" -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" ${PULLS_URI})
 
 echo "$new_pr_resp"
 echo "created pull request"
