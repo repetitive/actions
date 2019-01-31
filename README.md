@@ -8,4 +8,4 @@ That can be used in other repos across GitHub:
  - submit [sitemap.xml](./submit-sitemap.md) to the Google
  - [Boot](./boot.md) CLI wrapper
  - [Lein](./lein.md) CLI wrapper
- - create GitHub [Pull Requests](./auto-pr.md) when branches are pushed
+ - create GitHub [Pull Requests](./auto-pull-request.md) when branches are pushed

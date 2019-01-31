@@ -1,6 +1,6 @@
 FROM alpine
 
-LABEL name="auto-pr"
+LABEL name="auto-pull-request"
 LABEL version="1.0.0"
 LABEL repository="http://github.com/repetitive/actions"
 LABEL homepage="http://github.com/repetitive/actions"

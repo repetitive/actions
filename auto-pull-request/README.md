@@ -9,8 +9,8 @@ Pull Request created automatically. No need to click though UI anymore!
 To include this action just add following code to your flow:
 
 ```
-action "auto-pr" {
-  uses = "repetitive/actions/auto-pr@master"
+action "auto-pull-request" {
+  uses = "repetitive/actions/auto-pull-request@master"
   secrets = ["GITHUB_TOKEN"]
 }
 ```
