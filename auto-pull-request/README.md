@@ -16,8 +16,9 @@ on: [push]
 name: Create PR for new branches
 jobs:
   auto-pull-request:
-    runs-on: ubuntu-18.04
+    ...
     steps:
+    - ...
     - uses: repetitive/actions/auto-pull-request@v1
       if: github.event.created && github.event.head_commit
       env:
