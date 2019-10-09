@@ -1,16 +1,26 @@
-## GitHub Actions for automatically creating Pull Request
+## GitHub Actions for automatically creating Pull Requests
 
-This action will create Pull Request on any commit that creates new branch.
-So whenever you push new branch to GitHub you will have
-Pull Request created automatically. No need to click though UI anymore!
+This action will create a Pull Request if a pushed commit creates a new branch.
+So whenever you push a new branch to GitHub you will have the Pull Request created
+automatically. No need to click though UI anymore!
+
 
 ### Workflow
 
 To include this action just add following code to your flow:
 
-```
-action "auto-pull-request" {
-  uses = "repetitive/actions/auto-pull-request@master"
-  secrets = ["GITHUB_TOKEN"]
-}
+```yaml
+# .github/workflows/my-flow.yml
+on: [push]
+
+name: Create PR for new branches
+jobs:
+  auto-pull-request:
+    ...
+    steps:
+    - ...
+    - uses: repetitive/actions/auto-pull-request@v1
+      if: github.event.created && github.event.head_commit
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
